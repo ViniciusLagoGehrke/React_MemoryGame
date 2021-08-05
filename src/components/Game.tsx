@@ -8,22 +8,29 @@ interface Props {
 }
 
 function Game({ gridSize = 5 }: Props) {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState<any>([]);
 
   useEffect(() => {
-    const setInitialCards = async () => {
-      const response = await fetch("/api/v2/imageIds", 5);
-      console.log(response);
-      setCards(response.body as any);
-    };
-    setInitialCards();
-  }, []);
+    fetch("/api/v2/imageIds", gridSize)
+      .then((res) => {
+        if (res.status === 200) {
+          console.log("Success");
+        } else if (res.status === 500) {
+          console.log("Server Error");
+        }
+
+        return res.json();
+      })
+      .then((data) => {
+        setCards(data);
+      });
+  }, [gridSize]);
 
   return (
     <Board>
-      {/* {cards.map((imageId: number, index: number) => (
+      {cards.map((imageId: number, index: number) => (
         <Card key={index} gridSize={gridSize} imageId={imageId} />
-      ))} */}
+      ))}
     </Board>
   );
 }
