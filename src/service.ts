@@ -24,7 +24,7 @@ export function generateCards(gridSize: number) {
     }
 
   } while (imageIds.length <= (gridSize * gridSize));
-
+  
   return shuffle(imageIds);
 }
 

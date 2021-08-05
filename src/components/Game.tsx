@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Board from "./Board";
 import Card from "./Card";
+import ErrorMessage from "./ErrorMessage";
+import CircularProgress from "./CircularProgress";
 import { fetch } from "../service";
 
 interface Props {
@@ -9,28 +11,41 @@ interface Props {
 
 function Game({ gridSize = 5 }: Props) {
   const [cards, setCards] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/v2/imageIds", gridSize)
       .then((res) => {
         if (res.status === 200) {
-          console.log("Success");
+          return res.json();
         } else if (res.status === 500) {
-          console.log("Server Error");
+          throw new Error("Server Error");
         }
-
-        return res.json();
       })
       .then((data) => {
         setCards(data);
-      });
+      })
+      .catch((error) => {
+        console.warn(error);
+      })
+      .finally(() => setLoading(false));
   }, [gridSize]);
+
+  function renderCards() {
+    return cards.map((imageId: number, index: number) => (
+      <Card key={index} gridSize={gridSize} imageId={imageId} />
+    ));
+  }
 
   return (
     <Board>
-      {cards.map((imageId: number, index: number) => (
-        <Card key={index} gridSize={gridSize} imageId={imageId} />
-      ))}
+      {loading ? (
+        <CircularProgress />
+      ) : cards.length > 0 ? (
+        renderCards()
+      ) : (
+        <ErrorMessage>Ops, something didn't work. Please refresh!</ErrorMessage>
+      )}
     </Board>
   );
 }
