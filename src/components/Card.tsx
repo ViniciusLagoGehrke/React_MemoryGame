@@ -1,21 +1,40 @@
-import React, { useState } from 'react';
-import CardWrapper from './CardWrapper';
-import CardImage from './CardImage';
-import CardBack from './CardBack';
+import React, { useEffect, useState } from "react";
+import CardWrapper from "./CardWrapper";
+import CardImage from "./CardImage";
+import CardBack from "./CardBack";
 
-interface Props {
+export interface CardProps {
   gridSize: number;
   imageId: number;
+  index: number;
+  discoveredList: Array<number>;
+  flippedList: Array<number>;
+  onClick: () => void;
 }
 
-export default function Card(props: Props) {
+export default function Card(props: CardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const toggleFlipped = () => setIsFlipped(!isFlipped);
+
+  useEffect(() => {
+    if (
+      props.flippedList.includes(props.index) ||
+      props.discoveredList.includes(props.index)
+    ) {
+      setIsFlipped(true);
+    }
+  }, [props.discoveredList, props.flippedList, props.index]);
 
   return (
-    <CardWrapper {...props} isFlipped={isFlipped} onClick={toggleFlipped}>
+    <CardWrapper
+      gridSize={props.gridSize}
+      isFlipped={isFlipped}
+      onClick={props.onClick}
+    >
       <CardBack />
-      <CardImage src={`https://picsum.photos/id/${props.imageId}/600`} alt={`${props.imageId}`} />
+      <CardImage
+        src={`https://picsum.photos/id/${props.imageId}/600`}
+        alt={`${props.imageId}`}
+      />
     </CardWrapper>
   );
 }
