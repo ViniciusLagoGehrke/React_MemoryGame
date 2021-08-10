@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CardWrapper from "./CardWrapper";
 import CardImage from "./CardImage";
 import CardBack from "./CardBack";
@@ -6,28 +6,15 @@ import CardBack from "./CardBack";
 export interface CardProps {
   gridSize: number;
   imageId: number;
-  index: number;
-  discoveredList: Array<number>;
-  flippedList: Array<number>;
+  isFlipped: boolean;
   onClick: () => void;
 }
 
 export default function Card(props: CardProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  useEffect(() => {
-    if (
-      props.flippedList.includes(props.index) ||
-      props.discoveredList.includes(props.index)
-    ) {
-      setIsFlipped(true);
-    }
-  }, [props.discoveredList, props.flippedList, props.index]);
-
   return (
     <CardWrapper
       gridSize={props.gridSize}
-      isFlipped={isFlipped}
+      isFlipped={props.isFlipped}
       onClick={props.onClick}
     >
       <CardBack />

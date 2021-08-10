@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
+import Header from "./Header";
 import Board from "./Board";
-import Card from "./Card";
+import Card, { CardProps } from "./Card";
 import ErrorMessage from "./ErrorMessage";
 import CircularProgress from "./CircularProgress";
 import { fetch } from "../service";
 
-interface Props {
-  gridSize?: number;
-}
-
-function Game({ gridSize = 5 }: Props) {
+function Game() {
   const [cards, setCards] = useState<any[]>([]);
+  const [gridSize, setGridSize] = useState<number>(5);
   const [loading, setLoading] = useState(true);
   const [discoveredList, setDiscoveredList] = useState<number[]>([]);
   const [flippedList, setFlippedList] = useState<number[]>([]);
@@ -26,9 +24,17 @@ function Game({ gridSize = 5 }: Props) {
         }
       })
       .then((data) => {
-        setCards(data);
+        const initialCardList = data.map((item: number) => {
+          return {
+            gridSize: gridSize,
+            imageId: item,
+            isFlipped: false,
+          };
+        });
+        setCards(initialCardList);
       })
       .catch((error) => {
+        setCards([]);
         console.warn(error);
       })
       .finally(() => setLoading(false));
@@ -41,65 +47,97 @@ function Game({ gridSize = 5 }: Props) {
   }, [discoveredList, cards]);
 
   function checkCards(firstIndex: number, secondIndex: number) {
-    console.log(flippedList);
     if (
       firstIndex !== secondIndex &&
       cards[firstIndex].imageId === cards[secondIndex].imageId
     ) {
       setDiscoveredList([...discoveredList, firstIndex, secondIndex]);
+      setFlippedList([]);
     } else {
       setTimeout(() => {
         setFlippedList([]);
-      }, 600);
+      }, 1200);
     }
   }
 
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const inputInteger = parseInt(event.currentTarget.value);
+    if (inputInteger > 0) {
+      setGridSize(inputInteger);
+    }
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const shouldIncrement =
+      event.currentTarget.dataset.shouldincrement === "true";
+    if (shouldIncrement) {
+      setGridSize(gridSize + 1);
+    } else {
+      setGridSize(gridSize - 1);
+    }
+  };
+
   const handleFlipped = (index: number) => {
-    if (!discoveredList.includes(index)) {
-      switch (flippedList.length) {
-        case 0:
-          setFlippedList([index]);
-          break;
-        case 1:
-          if (flippedList[0] !== index) {
-            setFlippedList(flippedList.concat(index));
-            checkCards(flippedList[0], index);
-          }
-          break;
-        case 2:
-          setFlippedList([index]);
-          break;
-        default:
-          setFlippedList([]);
-      }
+    if (discoveredList.includes(index)) {
+      return;
+    }
+    switch (flippedList.length) {
+      case 0:
+        setFlippedList([index]);
+        break;
+      case 1:
+        if (flippedList[0] !== index) {
+          setFlippedList(flippedList.concat(index));
+          checkCards(flippedList[0], index);
+        }
+        break;
+      case 2:
+        setFlippedList([index]);
+        break;
+      default:
+        setFlippedList([]);
     }
   };
 
   function renderCards() {
-    return cards.map((imageId: number, index: number) => (
+    return cards.map((card: CardProps, index: number) => (
       <Card
         key={index}
-        gridSize={gridSize}
-        imageId={imageId}
-        index={index}
-        discoveredList={discoveredList}
-        flippedList={flippedList}
+        gridSize={card.gridSize}
+        imageId={card.imageId}
+        isFlipped={
+          flippedList.includes(index) || discoveredList.includes(index)
+        }
         onClick={() => handleFlipped(index)}
       />
     ));
   }
 
   return (
-    <Board>
+    <>
       {loading ? (
         <CircularProgress />
-      ) : cards && cards.length > 0 ? (
-        renderCards()
       ) : (
-        <ErrorMessage>Ops, something didn't work. Please refresh!</ErrorMessage>
+        <div>
+          {cards && cards.length > 0 ? (
+            <div>
+              <Header
+                isWinner={winner}
+                gridSize={gridSize}
+                onClick={handleClick}
+                onChange={handleChange}
+              />
+              <Board>{renderCards()}</Board>
+            </div>
+          ) : (
+            <ErrorMessage>
+              Ops, something didn't work. Please refresh!
+            </ErrorMessage>
+          )}
+        </div>
       )}
-      {winner && <h1>Congratulations!!!</h1>}
-    </Board>
+    </>
   );
 }
 
