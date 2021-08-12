@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export default styled.div`
-  height: 100vh;
+  height: 100%;
   background: #303d55;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2.5rem;
 `;

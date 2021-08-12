@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface HeaderProps {
   isWinner: boolean;
   gridSize: number;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: (event: React.MouseEvent<HTMLSpanElement>) => void;
   onChange: (event: React.FormEvent<HTMLInputElement>) => void;
 }
 
@@ -15,7 +15,7 @@ const StyledHeader = styled.header`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 3rem;
+  padding-right: 2.5rem;
   color: white;
   font-size: 2rem;
 
@@ -29,19 +29,21 @@ const StyledHeader = styled.header`
   }
 
   input {
-    width: 80px;
+    width: 2rem;
     padding: 0 12px;
     vertical-align: top;
     text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
     outline: none;
     border: 1px solid #ccc;
-    height: 40px;
+    height: 2.5rem;
     user-select: none;
   }
 
-  button {
+  span {
     border: 1px solid #ccc;
-    height: 40px;
+    height: 2.5rem;
     user-select: none;
     display: inline-block;
     width: 30px;
@@ -57,12 +59,12 @@ const StyledHeader = styled.header`
     }
   }
 
-  button:first-of-type {
+  span:first-of-type {
     border-right: none;
     border-radius: 4px 0 0 4px;
   }
 
-  button:last-of-type {
+  span:last-of-type {
     border-left: none;
     border-radius: 0 4px 4px 0;
   }
@@ -80,9 +82,9 @@ export default function Header({
       <div>
         <label htmlFor="grid-size">Grid Size:</label>
 
-        <button data-shouldincrement={false} onClick={onClick}>
+        <span data-shouldincrement={false} onClick={onClick}>
           –
-        </button>
+        </span>
         <input
           id="grid-size"
           type="text"
@@ -92,9 +94,9 @@ export default function Header({
           value={gridSize}
           onChange={onChange}
         ></input>
-        <button data-shouldincrement={true} onClick={onClick}>
+        <span data-shouldincrement={true} onClick={onClick}>
           +
-        </button>
+        </span>
       </div>
     </StyledHeader>
   );

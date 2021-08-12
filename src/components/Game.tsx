@@ -67,7 +67,7 @@ function Game() {
     }
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
     event.preventDefault();
     const shouldIncrement =
       event.currentTarget.dataset.shouldincrement === "true";
@@ -119,23 +119,23 @@ function Game() {
       {loading ? (
         <CircularProgress />
       ) : (
-        <div>
+        <>
           {cards && cards.length > 0 ? (
-            <div>
+            <>
               <Header
                 isWinner={winner}
                 gridSize={gridSize}
                 onClick={handleClick}
                 onChange={handleChange}
               />
-              <Board>{renderCards()}</Board>
-            </div>
+              <Board gridSize={gridSize}>{renderCards()}</Board>
+            </>
           ) : (
             <ErrorMessage>
               Ops, something didn't work. Please refresh!
             </ErrorMessage>
           )}
-        </div>
+        </>
       )}
     </>
   );
