@@ -23,7 +23,7 @@ export function generateCards(gridSize: number) {
       imageIds.push(randomNumber);
     }
 
-  } while (imageIds.length <= (gridSize * gridSize));
+  } while (imageIds.length < (gridSize * gridSize));
   
   return shuffle(imageIds);
 }
@@ -41,7 +41,8 @@ export const fetch = async (url: string, payload: number): Promise<Response> => 
     return new Promise((resolve) => {
         const max = 1; //defaul max random value = 1;
         const min = 0.4; //sets min random value = 0.4 (decreases # times server errors);
-        const ok = Boolean(Math.round(Math.random() * (max - min) + min));
+        const ok:boolean = true; //No server error
+        // const ok = Boolean(Math.round(Math.random() * (max - min) + min));
         const init = { "status": ok ? 200 : 500 };
         const body = ok ? generateCards(payload) : undefined;
 

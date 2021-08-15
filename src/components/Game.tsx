@@ -37,7 +37,11 @@ function Game() {
         setCards([]);
         console.warn(error);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        setFlippedList([]);
+        setDiscoveredList([]);
+      });
   }, [gridSize]);
 
   useEffect(() => {
@@ -56,7 +60,7 @@ function Game() {
     } else {
       setTimeout(() => {
         setFlippedList([]);
-      }, 1200);
+      }, 1000);
     }
   }
 
@@ -76,6 +80,7 @@ function Game() {
     } else {
       setGridSize(gridSize - 1);
     }
+    setLoading(true);
   };
 
   const handleFlipped = (index: number) => {

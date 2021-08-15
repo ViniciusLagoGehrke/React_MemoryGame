@@ -1,27 +1,27 @@
 # SPREAD Memory
 
+Simple Memory Game that enables you to set the grid size.
+
 ### Background
-This is a demo memory game product for a customer project, which was created by a colleague that has left the company.
-The product comes without a backend and works with a custom api-client that mocks the requests. Unfortunately, he
-could not finish the demo, and has left it in a non-compiling state without git history. 
 
-#### Task
-Please bring the game into a functional state (ignore ui and style to stay in the timebox),
-and lay the foundation for the product that will emerge from this demo.
-You may use any library you want, but please stay in a time window of maximum 4 hours.
+This was initially a nice interview test that I really liked and wanted to push it further.
+The product comes without a backend and works with a custom api-client that mocks the requests.
 
+#### The Beggining
 
-### The Game Rules
-- All the cards should be faced down when the game starts. 
-- An image is revealed, when the user clicks on a card. 
+The initial project request was to put it into a functional state ignoring ui and style to stay in the timebox,
+and lay foundation for the product that emerged (mostly fixing typescript errors, fetching data from the mocked API and applying the game logic).
+
+### Game Requisites
+
+- All the cards should be faced down when the game starts.
+- An image is revealed, when the user clicks on a card.
 - The user can reveal 2 images at a time.
 - If the revealed images are the same they should stay revealed.
 
+### The Next Mile
 
-### Technical AC
-- The code needs to be type-safe up to the i/o-boundary.
-- Tests are not required
-
+- Apply unit tests and component tests using Jest
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
