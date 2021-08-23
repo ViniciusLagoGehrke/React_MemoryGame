@@ -1,54 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Board from "./Board";
 import Card, { CardProps } from "./Card";
 import ErrorMessage from "./ErrorMessage";
 import CircularProgress from "./CircularProgress";
-import { fetch } from "../service";
+import useFetch from "../utils/useFetch";
+import useWinner from "../utils/useWinner";
 
 function Game() {
-  const [cards, setCards] = useState<any[]>([]);
   const [gridSize, setGridSize] = useState<number>(5);
   const [loading, setLoading] = useState(true);
-  const [discoveredList, setDiscoveredList] = useState<number[]>([]);
   const [flippedList, setFlippedList] = useState<number[]>([]);
+  const [discoveredList, setDiscoveredList] = useState<number[]>([]);
   const [winner, setWinner] = useState(false);
 
-  useEffect(() => {
-    fetch("/api/v2/imageIds", gridSize)
-      .then((res) => {
-        if (res.status === 200) {
-          return res.json();
-        } else if (res.status === 500) {
-          throw new Error("Server Error");
-        }
-      })
-      .then((data) => {
-        const initialCardList = data.map((item: number) => {
-          return {
-            gridSize: gridSize,
-            imageId: item,
-            isFlipped: false,
-          };
-        });
-        setCards(initialCardList);
-      })
-      .catch((error) => {
-        setCards([]);
-        console.warn(error);
-      })
-      .finally(() => {
-        setLoading(false);
-        setFlippedList([]);
-        setDiscoveredList([]);
-      });
-  }, [gridSize]);
+  // fetch data and set initial-states
+  const { cards } = useFetch(
+    gridSize,
+    setLoading,
+    setFlippedList,
+    setDiscoveredList
+  );
 
-  useEffect(() => {
-    if (discoveredList.length > 0 && discoveredList.length === cards.length) {
-      setWinner(true);
-    }
-  }, [discoveredList, cards]);
+  // Set winner when game is over
+  useWinner(cards, discoveredList, setWinner);
 
   function checkCards(firstIndex: number, secondIndex: number) {
     if (
