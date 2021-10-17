@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import { CardProps } from "../components/Card";
 
 const useWinner = (
-  cards: any[],
+  cards: CardProps[],
   discoveredList: number[],
   setWinner: React.Dispatch<React.SetStateAction<boolean>>
 ) => {

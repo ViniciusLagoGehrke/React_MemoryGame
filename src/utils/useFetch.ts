@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetch } from "../service";
+import { CardProps } from "../components/Card";
 
 const useFetch = (
   gridSize: number,
@@ -9,7 +10,7 @@ const useFetch = (
   setWinner: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
   
-  const [cards, setCards] = useState<any[]>([]);
+  const [cards, setCards] = useState<CardProps[]>([]);
 
   useEffect(() => {
     fetch("/api/v2/imageIds", gridSize)
