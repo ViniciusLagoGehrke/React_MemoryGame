@@ -5,7 +5,8 @@ const useFetch = (
   gridSize: number,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setFlippedList: React.Dispatch<React.SetStateAction<number[]>>,
-  setDiscoveredList: React.Dispatch<React.SetStateAction<number[]>>
+  setDiscoveredList: React.Dispatch<React.SetStateAction<number[]>>,
+  setWinner: React.Dispatch<React.SetStateAction<boolean>>
   ) => {
   
   const [cards, setCards] = useState<any[]>([]);
@@ -37,8 +38,9 @@ const useFetch = (
         setLoading(false);
         setFlippedList([]);
         setDiscoveredList([]);
+        setWinner(false);
       });
-  }, [gridSize, setDiscoveredList, setFlippedList, setLoading])
+  }, [gridSize, setDiscoveredList, setFlippedList, setLoading, setWinner])
 
   return {
     cards
