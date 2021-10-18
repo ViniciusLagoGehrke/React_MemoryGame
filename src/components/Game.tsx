@@ -8,7 +8,7 @@ import useFetch from "../utils/useFetch";
 import useWinner from "../utils/useWinner";
 
 function Game() {
-  const [gridSize, setGridSize] = useState<number>(5);
+  const [gridSize, setGridSize] = useState<number>(6);
   const [loading, setLoading] = useState(true);
   const [flippedList, setFlippedList] = useState<number[]>([]);
   const [discoveredList, setDiscoveredList] = useState<number[]>([]);
@@ -17,7 +17,7 @@ function Game() {
   // Handle input change and set grid size
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const inputInteger = parseInt(event.currentTarget.value);
-    if (inputInteger > 0) {
+    if (inputInteger > 0 && inputInteger % 2 == 0) {
       setGridSize(inputInteger);
     }
   };
@@ -28,9 +28,9 @@ function Game() {
     const shouldIncrement =
       event.currentTarget.dataset.shouldincrement === "true";
     if (shouldIncrement) {
-      setGridSize(gridSize + 1);
+      setGridSize(gridSize + 2);
     } else {
-      setGridSize(gridSize - 1);
+      setGridSize(gridSize - 2);
     }
     setLoading(true);
   };

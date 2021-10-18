@@ -29,11 +29,6 @@ export function generateCards(gridSize: number) {
 }
 
 export const fetch = async (url: string, payload: number): Promise<Response> => {
-    /* -----------------
-     PLEASE DO NOT TOUCH
-     IT"S THE PROTOTYPE
-     BACKEND FOR THE DEMO PRODUCT
-     ----------------- */
     if(url !== '/api/v2/imageIds'){
         throw new Error('RESOURCE DOES NOT EXIST');
     }
