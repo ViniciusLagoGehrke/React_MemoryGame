@@ -28,8 +28,14 @@ function Game() {
     const shouldIncrement =
       event.currentTarget.dataset.shouldincrement === "true";
     if (shouldIncrement) {
+      if (gridSize === 8) {
+        return;
+      }
       setGridSize(gridSize + 2);
     } else {
+      if (gridSize === 2) {
+        return;
+      }
       setGridSize(gridSize - 2);
     }
     setLoading(true);
