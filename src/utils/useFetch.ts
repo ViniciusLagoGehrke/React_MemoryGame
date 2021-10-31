@@ -4,7 +4,8 @@ import { CardProps } from "../components/Card";
 
 const useFetch = (
   gridSize: number,
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  loading: boolean,
+  toggleLoading: (loading: boolean) =>void,
   setFlippedList: React.Dispatch<React.SetStateAction<number[]>>,
   setDiscoveredList: React.Dispatch<React.SetStateAction<number[]>>,
   setWinner: React.Dispatch<React.SetStateAction<boolean>>
@@ -36,12 +37,12 @@ const useFetch = (
         console.warn(error);
       })
       .finally(() => {
-        setLoading(false);
+        toggleLoading(loading);
         setFlippedList([]);
         setDiscoveredList([]);
         setWinner(false);
       });
-  }, [gridSize, setDiscoveredList, setFlippedList, setLoading, setWinner])
+  }, [gridSize, setDiscoveredList, setFlippedList, toggleLoading, setWinner, loading])
 
   return {
     cards

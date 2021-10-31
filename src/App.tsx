@@ -1,14 +1,14 @@
 import React from "react";
-// import { StoreProvider } from "./utils/store";
+import { ContextProvider } from "./context/ContextProvider";
 import Layout from "./components/Layout";
 import Game from "./components/Game";
 
 function App() {
   return (
     <Layout>
-      {/* <StoreProvider> */}
-      <Game />
-      {/* </StoreProvider> */}
+      <ContextProvider>
+        <Game />
+      </ContextProvider>
     </Layout>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Header from "./Header";
 import Board from "./Board";
 import Card, { CardProps } from "./Card";
@@ -6,10 +6,12 @@ import ErrorMessage from "./ErrorMessage";
 import CircularProgress from "./CircularProgress";
 import useFetch from "../utils/useFetch";
 import useWinner from "../utils/useWinner";
+import { MainContext, ContextTypes } from "../context";
 
 function Game() {
+  const { loading, toggleLoading } = useContext<ContextTypes>(MainContext);
   const [gridSize, setGridSize] = useState<number>(6);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [flippedList, setFlippedList] = useState<number[]>([]);
   const [discoveredList, setDiscoveredList] = useState<number[]>([]);
   const [winner, setWinner] = useState(false);
@@ -17,7 +19,7 @@ function Game() {
   // Handle input change and set grid size
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const inputInteger = parseInt(event.currentTarget.value);
-    if (inputInteger > 0 && inputInteger % 2 == 0) {
+    if (inputInteger > 0 && inputInteger % 2 === 0) {
       setGridSize(inputInteger);
     }
   };
@@ -38,13 +40,14 @@ function Game() {
       }
       setGridSize(gridSize - 2);
     }
-    setLoading(true);
+    toggleLoading(loading);
   };
 
   // fetch data and set initial-states
   const { cards } = useFetch(
     gridSize,
-    setLoading,
+    loading,
+    toggleLoading,
     setFlippedList,
     setDiscoveredList,
     setWinner
