@@ -17,7 +17,7 @@ function Game() {
   // Handle input change and set grid size
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const inputInteger = parseInt(event.currentTarget.value);
-    if (inputInteger > 0 && inputInteger % 2 == 0) {
+    if (inputInteger > 0 && inputInteger % 2 === 0) {
       setGridSize(inputInteger);
     }
   };
