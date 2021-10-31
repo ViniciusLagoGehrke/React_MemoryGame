@@ -9,13 +9,14 @@ interface HeaderProps {
 }
 
 const StyledHeader = styled.header`
+  min-width: 35rem;
   min-height: 14rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-right: 2.5rem;
+  padding-left: 2.5rem;
   color: white;
   font-size: 2rem;
 

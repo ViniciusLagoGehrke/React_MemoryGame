@@ -8,7 +8,7 @@ import useFetch from "../utils/useFetch";
 import useWinner from "../utils/useWinner";
 
 function Game() {
-  const [gridSize, setGridSize] = useState<number>(6);
+  const [gridSize, setGridSize] = useState<number>(4);
   const [loading, setLoading] = useState(true);
   const [flippedList, setFlippedList] = useState<number[]>([]);
   const [discoveredList, setDiscoveredList] = useState<number[]>([]);
@@ -28,7 +28,7 @@ function Game() {
     const shouldIncrement =
       event.currentTarget.dataset.shouldincrement === "true";
     if (shouldIncrement) {
-      if (gridSize === 8) {
+      if (gridSize === 6) {
         return;
       }
       setGridSize(gridSize + 2);
