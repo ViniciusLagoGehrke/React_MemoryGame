@@ -1,5 +1,15 @@
 # Memory Game
 
+<p>
+  <a href="https://github.com/ViniciusLagoGehrke">
+      <img src="https://img.shields.io/badge/author-Vinicius-blue?style=flat" alt="author">
+  </a>
+  <img src="https://img.shields.io/github/languages/count/ViniciusLagoGehrke/React_MemoryGame?color=blue&style=flat">
+  <img src="https://img.shields.io/github/languages/top/ViniciusLagoGehrke/React_MemoryGame?color=blue&style=flat">
+</p>
+
+## About this project
+
 Simple Memory Game that enables you to set the grid size.
 
 ## Screenshots
