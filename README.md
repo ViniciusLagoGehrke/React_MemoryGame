@@ -1,6 +1,10 @@
-# SPREAD Memory
+# Memory Game
 
 Simple Memory Game that enables you to set the grid size.
+
+## Screenshots
+
+![Desktop Preview](desktop-preview.jpg)
 
 ### Background
 
@@ -21,9 +25,7 @@ and lay foundation for the product that emerged (mostly fixing typescript errors
 
 ### The Next Mile
 
-- Apply unit tests and component tests using Jest
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Apply unit tests and component tests using Jest.
 
 ## Available Scripts
 
