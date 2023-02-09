@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetch } from "../service";
-import { CardProps } from "../components/Card";
+import { CardProps } from "../components/Card/types";
 
 const useFetch = (
   gridSize: number,

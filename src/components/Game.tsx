@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import Board from "./Board";
-import Card, { CardProps } from "./Card";
+import Card from "./Card";
+import { CardProps } from "./Card/types";
 import ErrorMessage from "./ErrorMessage";
 import CircularProgress from "./CircularProgress";
 import useFetch from "../utils/useFetch";

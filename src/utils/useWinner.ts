@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CardProps } from "../components/Card";
+import { CardProps } from "../components/Card/types";
 
 const useWinner = (
   cards: CardProps[],
