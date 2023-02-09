@@ -1,7 +1,6 @@
 name: ci
 
-on:
-  push:
+on: [push]
 
 jobs:
   build:
@@ -12,4 +11,4 @@ jobs:
 
   steps:
     - name: New push
-      run: echo 'A new push was created!'
+      run: echo "A new push was created!"
