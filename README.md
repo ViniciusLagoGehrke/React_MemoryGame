@@ -4,7 +4,7 @@
   <a href="https://github.com/ViniciusLagoGehrke">
       <img src="https://img.shields.io/badge/author-ViniciusLagoGehrke-blue?style=flat" alt="author">
   </a>
-  <img src="https://img.shields.io/github/actions/workflow/status/ViniciusLagoGehrke/React_MemoryGame/Tests%20on%20Push?color=blue">
+  <img src="https://img.shields.io/github/actions/workflow/status/ViniciusLagoGehrke/React_MemoryGame/push.yml?color=blue">
   <img src="https://img.shields.io/github/languages/top/ViniciusLagoGehrke/React_MemoryGame?color=blue&style=flat">
 </p>
 
