@@ -10,5 +10,4 @@ jobs:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   steps:
-    - name: New push
-      run: echo "A new push was created!"
+    - run: echo "Hello world!"
