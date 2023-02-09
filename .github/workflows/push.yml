@@ -1,0 +1,15 @@
+name ci
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  steps:
+    - name: New push
+      run: echo 'A new push was created!'
