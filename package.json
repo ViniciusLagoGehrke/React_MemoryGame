@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "test": "jest --watch",
+    "test": "jest",
+    "test:w": "jest --watchAll",
+    "test:c": "jest --coverage",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
