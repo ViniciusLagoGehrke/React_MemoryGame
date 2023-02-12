@@ -17,7 +17,7 @@ export default function Card({
       isFlipped={isFlipped}
       onClick={onClick}
     >
-      <CardBack />
+      <CardBack data-testid='card-back'/>
       <CardImage
         src={`https://picsum.photos/id/${imageId}/600`}
         alt={`${imageId}`}

@@ -91,7 +91,6 @@ function Game() {
       case 0:
         // includes card in flippedList if there's no card flipped
         setFlippedList([index]);
-        console.log("case 0");
         break;
       case 1:
         // includes second card on flippedList if not flipped already
@@ -99,12 +98,10 @@ function Game() {
           setFlippedList(flippedList.concat(index));
           checkCards(flippedList[0], index);
         }
-        console.log("case 1");
         break;
       default:
         // clears the flippedList
         setFlippedList([]);
-        console.log("case default");
     }
   };
 

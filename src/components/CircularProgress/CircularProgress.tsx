@@ -98,8 +98,8 @@ const SecondSpinner = styled.span`
 
 export default function CircularProgress() {
   return (
-    <Spinner>
-      <SecondSpinner />
+    <Spinner data-testId='spinner'>
+      <SecondSpinner role="alert" />
     </Spinner>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-interface HeaderProps {
+export interface HeaderProps {
   isWinner: boolean;
   gridSize: number;
   onClick: (event: React.MouseEvent<HTMLSpanElement>) => void;
@@ -79,7 +79,7 @@ export default function Header({
 }: HeaderProps) {
   return (
     <StyledHeader>
-      {isWinner ? <h1>Congratulations!!!</h1> : <br></br>}
+      {isWinner ? <h2>Congratulations!!!</h2> : <br></br>}
       <div>
         <label htmlFor="grid-size">Grid Size:</label>
 

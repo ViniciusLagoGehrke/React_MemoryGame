@@ -11,11 +11,11 @@ const Props: CardProps = {
 }
 
 describe('Card', () => {
-  it('should render a Card', () => {
+  it('should render a Card with all its components', () => {
     render(<Card {...Props} />);
 
     expect(screen.getByTestId('card')).toBeInTheDocument();
+    expect(screen.getByTestId('card-back')).toBeInTheDocument();
+    expect(screen.getByRole('img')).toBeInTheDocument();
   });
-
-
 })

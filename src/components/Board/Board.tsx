@@ -1,10 +1,12 @@
+import React from "react";
 import styled from "styled-components";
 
-interface Props {
+export interface BoardProps {
   gridSize: number;
+  children?: JSX.Element | JSX.Element[];
 }
 
-export default styled.div<Props>`
+const StyledBoard = styled.div<BoardProps>`
   width: 80%;
   height: 80%;
   display: grid;
@@ -21,3 +23,11 @@ export default styled.div<Props>`
     height: 80vw;
   }
 `;
+
+const Board = ({ gridSize, children }: BoardProps ) => (
+    <StyledBoard gridSize={gridSize} data-testid='board'>
+      {children}
+    </StyledBoard>
+  );
+
+export default Board;
