@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import Board from "./Board";
-import Card from "./Card";
-import { CardProps } from "./Card/types";
-import ErrorMessage from "./ErrorMessage";
-import CircularProgress from "./CircularProgress";
-import useFetch from "../utils/useFetch";
-import useWinner from "../utils/useWinner";
+import Header from "../Header";
+import Board from "../Board";
+import Card from "../Card";
+import { CardProps } from "../Card/types";
+import ErrorMessage from "../ErrorMessage";
+import CircularProgress from "../CircularProgress";
+import useFetch from "../../utils/useFetch";
+import useWinner from "../../utils/useWinner";
 
 function Game() {
   const [gridSize, setGridSize] = useState<number>(4);

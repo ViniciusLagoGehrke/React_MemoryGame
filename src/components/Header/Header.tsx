@@ -9,14 +9,13 @@ export interface HeaderProps {
 }
 
 const StyledHeader = styled.header`
-  min-width: 35rem;
-  min-height: 14rem;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  flex: 1 1 26rem;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 2.5rem;
+  justify-content: center;
   color: white;
   font-size: 2rem;
 
@@ -69,6 +68,14 @@ const StyledHeader = styled.header`
     border-left: none;
     border-radius: 0 4px 4px 0;
   }
+
+  .congrats-message {
+    min-height: 4.5rem;
+  }
+
+  h2 {
+    margin: 0.25rem auto;
+  }
 `;
 
 export default function Header({
@@ -79,7 +86,6 @@ export default function Header({
 }: HeaderProps) {
   return (
     <StyledHeader>
-      {isWinner ? <h2>Congratulations!!!</h2> : <br></br>}
       <div>
         <label htmlFor="grid-size">Grid Size:</label>
 
@@ -98,6 +104,9 @@ export default function Header({
         <span data-shouldincrement={true} onClick={onClick}>
           +
         </span>
+      </div>
+      <div className="congrats-message">
+        {isWinner ? <h2>Congratulations!!!</h2> : <br></br>}
       </div>
     </StyledHeader>
   );

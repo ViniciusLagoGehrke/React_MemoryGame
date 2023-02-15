@@ -13,6 +13,7 @@ const useFetch = (
   const [cards, setCards] = useState<CardProps[]>([]);
 
   useEffect(() => {
+    let isMounted = true;
     fetch("/api/v2/imageIds", gridSize)
       .then((res) => {
         if (res.status === 200) {
@@ -22,14 +23,16 @@ const useFetch = (
         }
       })
       .then((data) => {
-        const initialCardList = data.map((item: number) => {
-          return {
-            gridSize: gridSize,
-            imageId: item,
-            isFlipped: false,
-          };
-        });
-        setCards(initialCardList);
+        if(isMounted) {
+          const initialCardList = data.map((item: number) => {
+            return {
+              gridSize: gridSize,
+              imageId: item,
+              isFlipped: false,
+            };
+          });
+          setCards(initialCardList);
+        }
       })
       .catch((error) => {
         setCards([]);
@@ -41,6 +44,10 @@ const useFetch = (
         setDiscoveredList([]);
         setWinner(false);
       });
+
+      return () => {
+        isMounted = false;
+      }
   }, [gridSize, setDiscoveredList, setFlippedList, setLoading, setWinner])
 
   return {
