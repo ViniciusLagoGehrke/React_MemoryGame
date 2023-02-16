@@ -5,7 +5,7 @@ interface WindowSizes {
   height: number | undefined
 }
 
-const useWindowSize = () => {
+const useWindowSize: () => WindowSizes = () => {
   const [windowSize, setWindowSize] = useState<WindowSizes>({
     width: undefined,
     height: undefined
@@ -13,7 +13,7 @@ const useWindowSize = () => {
 
   useEffect(() => {
     // Handler to call on window resize
-    function handleResize () {
+    const handleResize: () => void = () => {
       // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,

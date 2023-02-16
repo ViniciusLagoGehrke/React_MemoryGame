@@ -8,7 +8,7 @@ import CircularProgress from '../CircularProgress'
 import useFetch from '../../utils/useFetch'
 import useWinner from '../../utils/useWinner'
 
-function Game () {
+const Game: React.FC = () => {
   const [gridSize, setGridSize] = useState<number>(4)
   const [loading, setLoading] = useState(true)
   const [flippedList, setFlippedList] = useState<number[]>([])
@@ -16,7 +16,7 @@ function Game () {
   const [winner, setWinner] = useState(false)
 
   // Handle input change and set grid size
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleChange: (event: React.FormEvent<HTMLInputElement>) => void = (event) => {
     const inputInteger = parseInt(event.currentTarget.value)
     if (inputInteger > 0 && inputInteger % 2 === 0) {
       setGridSize(inputInteger)
@@ -24,7 +24,7 @@ function Game () {
   }
 
   // Handle click incrementing or decrementing grid size
-  const handleClick = (event: React.MouseEvent<HTMLSpanElement>) => {
+  const handleClick: (event: React.MouseEvent<HTMLSpanElement>) => void = (event) => {
     event.preventDefault()
     const shouldIncrement =
       event.currentTarget.dataset.shouldincrement === 'true'
@@ -43,16 +43,16 @@ function Game () {
   }
 
   // fetch data and set initial-states
-  const { cards } = useFetch(
+  const { cards } = useFetch({
     gridSize,
     setLoading,
     setFlippedList,
     setDiscoveredList,
     setWinner
-  )
+  })
 
   // Maps data into cards
-  function renderCards () {
+  const renderCards: () => JSX.Element[] = () => {
     return cards.map((card: CardProps, index: number) => (
       <Card
         key={index}
@@ -67,7 +67,7 @@ function Game () {
   }
 
   // Check if clicked card is flipped or discovered and sets accordingly
-  function checkCards (firstIndex: number, secondIndex: number) {
+  const checkCards: (firstIndex: number, secondIndex: number) => void = (firstIndex, secondIndex) => {
     if (
       firstIndex !== secondIndex &&
       cards[firstIndex].imageId === cards[secondIndex].imageId
@@ -82,7 +82,7 @@ function Game () {
   }
 
   // Check if clicked card is already flipped or discovered and sets accordingly
-  const handleFlipped = (index: number) => {
+  const handleFlipped: (index: number) => void = (index) => {
     // ignores if card is already discovered
     if (discoveredList.includes(index)) {
       return
@@ -106,7 +106,7 @@ function Game () {
   }
 
   // Set winner when game is over
-  useWinner(cards, discoveredList, setWinner)
+  useWinner({cards, discoveredList, setWinner})
 
   return (
     <>
@@ -116,7 +116,7 @@ function Game () {
           )
         : (
         <>
-          {cards && cards.length > 0
+          {cards && cards.length > 0 // eslint-disable-line
             ? (
             <>
               <Header
@@ -130,7 +130,7 @@ function Game () {
               )
             : (
             <ErrorMessage>
-              Ops, something didn't work. Please refresh!
+              Ops, something didn&apos;t work. Please refresh!
             </ErrorMessage>
               )}
         </>

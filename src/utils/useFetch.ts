@@ -2,13 +2,21 @@ import { useState, useEffect } from 'react'
 import { fetch } from '../service'
 import { type CardProps } from '../components/Card/types'
 
-const useFetch = (
+interface FetchProps {
   gridSize: number,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   setFlippedList: React.Dispatch<React.SetStateAction<number[]>>,
   setDiscoveredList: React.Dispatch<React.SetStateAction<number[]>>,
   setWinner: React.Dispatch<React.SetStateAction<boolean>>
-) => {
+};
+
+const useFetch: (props: FetchProps) => {cards: CardProps[]} = ({
+  gridSize,
+  setLoading,
+  setFlippedList,
+  setDiscoveredList,
+  setWinner,
+}) => {
   const [cards, setCards] = useState<CardProps[]>([])
 
   useEffect(() => {

@@ -78,12 +78,12 @@ const StyledHeader = styled.header`
   }
 `
 
-export default function Header ({
+const Header: React.FC<HeaderProps> = ({
   isWinner,
   gridSize,
   onClick,
   onChange
-}: HeaderProps) {
+}: HeaderProps) => {
   return (
     <StyledHeader>
       <div>
@@ -111,3 +111,5 @@ export default function Header ({
     </StyledHeader>
   )
 }
+
+export default Header;

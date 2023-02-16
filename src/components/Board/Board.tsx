@@ -20,10 +20,13 @@ const StyledBoard = styled.div<BoardProps & { cardSize: number }>`
   gap: 1rem;
 `
 
-const Board = ({ gridSize, children }: BoardProps) => {
+const Board: React.FC<BoardProps> = ({ gridSize, children }: BoardProps) => {
   const { height, width } = useWindowSize()
-  const largestSize = height! > width! ? height : width
-  const cardSize = largestSize! / gridSize
+  let largestSize = 0;
+  if (height !== undefined && width !== undefined) {
+    largestSize = height > width ? height : width;
+  }
+  const cardSize = largestSize / gridSize
   return (
     <StyledBoard gridSize={gridSize} cardSize={cardSize} data-testid='board'>
       {children}

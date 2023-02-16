@@ -4,12 +4,12 @@ import CardImage from './CardImage'
 import CardBack from './CardBack'
 import { type CardProps } from './types'
 
-export default function Card ({
+const Card: React.FC<CardProps> =  ({
   gridSize,
   isFlipped,
   onClick,
   imageId
-}: CardProps) {
+}: CardProps) => {
   return (
     <CardWrapper
       data-testid='card'
@@ -25,3 +25,5 @@ export default function Card ({
     </CardWrapper>
   )
 }
+
+export default Card;

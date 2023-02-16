@@ -1,8 +1,8 @@
-function getRandomArbitrary (min: number, max: number) {
+const getRandomArbitrary: (min: number, max: number) => number = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function shuffle (a: number[]) {
+const shuffle: (a: number[]) => number[] = (a) => {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
 
@@ -12,7 +12,7 @@ function shuffle (a: number[]) {
   return a
 }
 
-export function generateCards (gridSize: number) {
+export const generateCards: (gridSize: number) => number[] = (gridSize) => {
   const imageIds: number[] = []
 
   do {

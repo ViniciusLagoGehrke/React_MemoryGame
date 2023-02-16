@@ -96,10 +96,12 @@ const SecondSpinner = styled.span`
   }
 `
 
-export default function CircularProgress () {
+const CircularProgress: React.FC = () => {
   return (
     <Spinner data-testid='spinner'>
       <SecondSpinner role="alert" />
     </Spinner>
   )
 }
+
+export default CircularProgress;

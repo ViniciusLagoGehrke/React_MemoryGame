@@ -30,14 +30,14 @@ describe('Header', () => {
     expect(input).toHaveProperty('type', 'text')
   })
 
-  it('should trigger onChange prop when user types', () => {
+  it('should trigger onChange prop when user types', async () => {
     const onChangeMock = jest.fn()
     render(<Header {...Props} onChange={onChangeMock} />)
 
     const inputText = '6'
     const input = screen.getByRole('textbox')
 
-    userEvent.type(input, inputText)
+    await userEvent.type(input, inputText)
 
     // expect(input).toHaveValue(inputText);
     // expect(onChangeMock).toHaveBeenCalled();
