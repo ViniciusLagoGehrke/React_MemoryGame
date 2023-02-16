@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 interface Props {
-  gridSize: number;
-  isFlipped: boolean;
+  gridSize: number
+  isFlipped: boolean
 }
 
 export default styled.div<Props>`
@@ -13,5 +13,5 @@ export default styled.div<Props>`
   transition: transform 1s;
   box-sizing: border-box;
   transform: ${(props) =>
-    props.isFlipped ? "translateX(-100%) rotateY(-180deg)" : "none"};
-`;
+    props.isFlipped ? 'translateX(-100%) rotateY(-180deg)' : 'none'};
+`

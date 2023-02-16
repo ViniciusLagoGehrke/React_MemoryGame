@@ -1,10 +1,10 @@
-import React from "react";
-import CardWrapper from "./CardWrapper";
-import CardImage from "./CardImage";
-import CardBack from "./CardBack";
-import { CardProps } from "./types";
+import React from 'react'
+import CardWrapper from './CardWrapper'
+import CardImage from './CardImage'
+import CardBack from './CardBack'
+import { type CardProps } from './types'
 
-export default function Card({
+export default function Card ({
   gridSize,
   isFlipped,
   onClick,
@@ -23,5 +23,5 @@ export default function Card({
         alt={`${imageId}`}
       />
     </CardWrapper>
-  );
+  )
 }

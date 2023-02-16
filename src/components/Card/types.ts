@@ -1,6 +1,6 @@
 export interface CardProps {
-  gridSize: number;
-  imageId: number;
-  isFlipped: boolean;
-  onClick: () => void;
+  gridSize: number
+  imageId: number
+  isFlipped: boolean
+  onClick: () => void
 }

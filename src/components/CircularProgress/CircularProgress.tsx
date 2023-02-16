@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 const Spinner = styled.div`
   height: 32px;
@@ -23,7 +23,7 @@ const Spinner = styled.div`
       transform: rotate(360deg);
     }
   }
-`;
+`
 
 const SecondSpinner = styled.span`
   display: block;
@@ -94,12 +94,12 @@ const SecondSpinner = styled.span`
       transform: rotate(140deg);
     }
   }
-`;
+`
 
-export default function CircularProgress() {
+export default function CircularProgress () {
   return (
     <Spinner data-testid='spinner'>
       <SecondSpinner role="alert" />
     </Spinner>
-  );
+  )
 }

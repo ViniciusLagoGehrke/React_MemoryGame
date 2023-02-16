@@ -1,18 +1,16 @@
-import { useEffect } from "react";
-import { CardProps } from "../components/Card/types";
+import { useEffect } from 'react'
+import { type CardProps } from '../components/Card/types'
 
 const useWinner = (
   cards: CardProps[],
   discoveredList: number[],
   setWinner: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-
   useEffect(() => {
     if (discoveredList.length > 0 && discoveredList.length === cards.length) {
-      setWinner(true);
+      setWinner(true)
     }
-  }, [discoveredList, cards, setWinner]);
-
+  }, [discoveredList, cards, setWinner])
 }
 
-export default useWinner;
+export default useWinner

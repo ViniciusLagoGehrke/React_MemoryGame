@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react'
+import styled from 'styled-components'
 
 export interface HeaderProps {
-  isWinner: boolean;
-  gridSize: number;
-  onClick: (event: React.MouseEvent<HTMLSpanElement>) => void;
-  onChange: (event: React.FormEvent<HTMLInputElement>) => void;
+  isWinner: boolean
+  gridSize: number
+  onClick: (event: React.MouseEvent<HTMLSpanElement>) => void
+  onChange: (event: React.FormEvent<HTMLInputElement>) => void
 }
 
 const StyledHeader = styled.header`
@@ -76,13 +76,13 @@ const StyledHeader = styled.header`
   h2 {
     margin: 0.25rem auto;
   }
-`;
+`
 
-export default function Header({
+export default function Header ({
   isWinner,
   gridSize,
   onClick,
-  onChange,
+  onChange
 }: HeaderProps) {
   return (
     <StyledHeader>
@@ -109,5 +109,5 @@ export default function Header({
         {isWinner ? <h2>Congratulations!!!</h2> : <br></br>}
       </div>
     </StyledHeader>
-  );
+  )
 }

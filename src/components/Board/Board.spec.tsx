@@ -1,6 +1,6 @@
-import React from "react";
-import { screen, render } from "@testing-library/react";
-import Board, { BoardProps } from "./Board";
+import React from 'react'
+import { screen, render } from '@testing-library/react'
+import Board, { type BoardProps } from './Board'
 
 const Props: BoardProps = {
   gridSize: 4
@@ -8,8 +8,8 @@ const Props: BoardProps = {
 
 describe('Board', () => {
   it('should render a Board with correct props', () => {
-    render(<Board {...Props} />);
+    render(<Board {...Props} />)
 
-    expect(screen.getByTestId('board')).toBeInTheDocument();
-  });
+    expect(screen.getByTestId('board')).toBeInTheDocument()
+  })
 })
