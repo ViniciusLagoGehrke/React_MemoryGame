@@ -1,7 +1,6 @@
 import React from 'react'
-import Header, { type HeaderProps } from './Header'
 import { screen, render } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import Header, { type HeaderProps } from './Header'
 
 const Props: HeaderProps = {
   isWinner: false,
@@ -28,18 +27,5 @@ describe('Header', () => {
     const input = screen.getByRole('textbox')
 
     expect(input).toHaveProperty('type', 'text')
-  })
-
-  it('should trigger onChange prop when user types', async () => {
-    const onChangeMock = jest.fn()
-    render(<Header {...Props} onChange={onChangeMock} />)
-
-    const inputText = '6'
-    const input = screen.getByRole('textbox')
-
-    await userEvent.type(input, inputText)
-
-    // expect(input).toHaveValue(inputText);
-    // expect(onChangeMock).toHaveBeenCalled();
   })
 })

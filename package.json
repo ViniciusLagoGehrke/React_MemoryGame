@@ -30,6 +30,7 @@
 		]
 	},
 	"dependencies": {
+		"jest": "^29.4.3",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-scripts": "3.4.3",
@@ -61,7 +62,7 @@
 		"eslint-plugin-promise": "^6.0.0",
 		"eslint-plugin-react": "^7.32.2",
 		"husky": "^8.0.3",
-		"jest-environment-jsdom": "^24.9.0",
+		"jest-environment-jsdom": "^29.4.3",
 		"msw": "^1.0.1",
 		"prettier": "^2.8.4",
 		"typescript": "*"
